@@ -20,31 +20,20 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-//@Header(name = "身份证号码", value = "aa")
 public class TestData {
 
-    @Align
-    @Header("身份证号码")
-    @Order(0)
+    @XSSF(index = 0, header = "身份证号")
     private String code;
 
-    @Align
-    @Header("姓名")
-    @Order(0)
+    @XSSF(index = 1, header = "姓名")
     private String name;
 
-    @Align
-    @Header("性别")
-    @Order(0)
+    @XSSF(index = 2, header = "性别")
     private Integer gender;
 
-    @Align(AlignStyle.LEFT)
-    @Header("身高")
-    @Order(0)
+    @XSSF(index = 3, header = "身高")
     private Float height;
 
-    @Align(AlignStyle.RIGHT)
-    @Header("工资")
-    @Order(0)
+    @XSSF(index = 4, header = "工资", align = AlignStyle.RIGHT)
     private BigDecimal salary;
 }

@@ -8,7 +8,7 @@ import com.example.demo.custom.annotation.poi.xssf.AlignStyle;
  */
 public @interface XSSF {
 
-    AlignStyle value() default AlignStyle.CENTER;
-    int order();
-    String name() default "";
+    AlignStyle align() default AlignStyle.CENTER;
+    int index();
+    String header() default "";
 }
