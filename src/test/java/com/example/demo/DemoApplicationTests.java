@@ -3,14 +3,20 @@ package com.example.demo;
 import com.example.demo.custom.annotation.format.money.aop.CustomAnnotationExplain;
 import com.example.demo.custom.annotation.format.money.data.MoneyData;
 import com.example.demo.custom.annotation.format.money.service.DoService;
+import com.example.demo.custom.annotation.poi.xssf.annotation.Header;
+import com.example.demo.custom.annotation.poi.xssf.annotation.Order;
+import com.example.demo.custom.annotation.poi.xssf.data.TestData;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.annotation.AliasFor;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @SpringBootTest
@@ -92,5 +98,39 @@ class DemoApplicationTests {
     @Test
     public void test() {
         System.out.println(new DecimalFormat("#,##0.00").format(new BigDecimal(0.33)));
+    }
+
+    @Test
+    public void test3() {
+        Map<Integer, String> headers = new TreeMap<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
+            }
+        });
+        Field[] declaredFields = TestData.class.getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            if (declaredField.isAnnotationPresent(Header.class) && declaredField.isAnnotationPresent(Order.class)) {
+                headers.put(declaredField.getDeclaredAnnotation(Order.class).value(), declaredField.getDeclaredAnnotation(Header.class).value());
+            }
+        }
+        headers.values().forEach(System.out::println);
+    }
+
+    @Test
+    public void test4() {
+        Map<Integer, String> headers = new TreeMap<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
+            }
+        });
+        Field[] declaredFields = TestData.class.getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            if (declaredField.isAnnotationPresent(Header.class) && declaredField.isAnnotationPresent(Order.class)) {
+                headers.put(declaredField.getDeclaredAnnotation(Order.class).value(), declaredField.getDeclaredAnnotation(Header.class).value());
+            }
+        }
+        headers.values().forEach(System.out::println);
     }
 }
