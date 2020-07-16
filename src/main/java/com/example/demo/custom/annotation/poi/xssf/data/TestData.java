@@ -8,6 +8,7 @@ import com.example.demo.custom.annotation.poi.xssf.annotation.XSSF;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -34,6 +35,6 @@ public class TestData {
     @XSSF(index = 3, header = "身高")
     private Float height;
 
-    @XSSF(index = 4, header = "工资", align = AlignStyle.RIGHT)
+    @XSSF(index = 4, header = "工资", align = HorizontalAlignment.RIGHT)
     private BigDecimal salary;
 }
